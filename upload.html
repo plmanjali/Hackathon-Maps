@@ -1,0 +1,111 @@
+<!-- upload.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Hackathon Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #50E3C2, #4A90E2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 400px;
+            padding: 25px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #4A90E2;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4A90E2;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4A90E2;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ABD;
+        }
+    </style>
+
+    <div class="container">
+        <h2>Enter Hackathon Details</h2>
+        <form id="hackathonForm">
+            <label for="name">Hackathon Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="participants">Number of Participants</label>
+            <input type="number" id="participants" name="participants" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('hackathonForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const hackathon = {
+                name: document.getElementById('name').value,
+                date: document.getElementById('date').value,
+                address: document.getElementById('address').value,
+                participants: document.getElementById('participants').value
+            };
+
+            // Store the hackathon details in localStorage
+            let hackathons = JSON.parse(localStorage.getItem('hackathons')) || [];
+            hackathons.push(hackathon);
+            localStorage.setItem('hackathons', JSON.stringify(hackathons));
+
+            alert('Hackathon details added successfully!');
+
+            // Redirect to the view hackathons page
+            window.location.href = 'view_hackathons.html';
+        });
+    </script>
+</body>
+</html>

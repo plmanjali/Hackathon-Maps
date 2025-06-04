@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Hackathon Results</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #4A90E2, #50E3C2);
+            padding: 20px;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .hackathon {
+            background-color: white;
+            color: #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px auto;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="collegeTitle"></h1>
+    <div id="hackathonList"></div>
+
+    <script>
+        const college = localStorage.getItem("selectedCollege");
+        document.getElementById("collegeTitle").textContent = `${college} Hackathons`;
+
+        const hackathonData = {
+            "G.Narayanamma Institute of Technology and Science": ["Smart India Hackathon 2025"],
+            "Gokaraju Rangaraju Institute of Engineering and Technology": ["Ideathon 2025"],
+            "JNTU Hyderabad": ["Tech Spark 2025"],
+            "Osmania University": ["CodeBlitz 2025"],
+            "CVR College of Engineering": ["InnovateX 2025"],
+            "MVSR Engineering College": ["Webathon 2025"],
+            "Chaitanya Bharathi Institute of Technology": ["CBIT Hackfest"],
+            "Kakatiya Institute of Technology and Science": ["KITS TechChallenge"],
+            "VNR Vignana Jyothi Institute of Engineering": ["VJ Hack Day"],
+            "Malla Reddy College of Engineering": ["MR Hack 2025"],
+            "Vasavi College of Engineering": ["Vasavi Code Jam"]
+        };
+
+        const hackathons = hackathonData[college] || ["No hackathons available for this college."];
+
+        const container = document.getElementById("hackathonList");
+        hackathons.forEach(h => {
+            const div = document.createElement("div");
+            div.className = "hackathon";
+            div.textContent = h;
+            container.appendChild(div);
+        });
+    </script>
+</body>
+</html>

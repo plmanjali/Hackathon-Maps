@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Selection Page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4A90E2, #50E3C2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .hackathon-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .hackathon-box {
+            background-color: white;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hackathon-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .hackathon-image {
+            width: 100%;
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .hackathon-box h3 {
+            color: #4A90E2;
+            margin-bottom: 10px;
+        }
+
+        .hackathon-box p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .hackathon-box button {
+            background-color: #50E3C2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hackathon-box button:hover {
+            background-color: #3BB294;
+        }
+
+        @media (max-width: 768px) {
+            .hackathon-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hackathon-container">
+        <div class="hackathon-box">
+            <img src="national-hackathon.jpg" alt="National Hackathon" class="hackathon-image">
+            <h3>National Level Hackathons</h3>
+            <p>Explore hackathons happening at the national level.</p>
+            <button onclick="goToNationalHackathons()">Go to National Hackathons</button>
+        </div>
+
+        <div class="hackathon-box">
+            <img src="college-hackathon.jpg" alt="College Hackathon" class="hackathon-image">
+            <h3>College Specific Hackathons</h3>
+            <p>Explore hackathons hosted by colleges and universities.</p>
+            <button onclick="goToCollegeHackathons()">Go to College Hackathons</button>
+        </div>
+    </div>
+
+    <script>
+        function goToNationalHackathons() {
+            window.location.href = "https://devpost.com/hackathons"; 
+        }
+
+        function goToCollegeHackathons() {
+            window.location.href = "college-hackathons.html"; 
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Maps - Login & Registration</title>
+
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: url("https://in.element14.com/wcsstore/ExtendedSitesCatalogAssetStore/cms/asset//images/common/technology/technical-resources-twitter-post.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+    flex-direction: column;
+}
+
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            color: white;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .container {
+            width: 350px;
+            padding: 25px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4A90E2;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            border-color: #4A90E2;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4A90E2;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ABD;
+        }
+
+        .menu {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #50E3C2;
+        }
+
+        .menu-box {
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-box:hover {
+            background-color: #f1f1f1;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+
+        .show-password {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .show-password input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-switch a {
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+                height: auto;
+            }
+
+            .form-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hackathon Maps</h1>
+    </header>
+    
+    <div class="form-container">
+        <div class="container" id="adminLogin">
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <label for="adminEmail">Email</label>
+                <input type="email" id="adminEmail" name="adminEmail" required>
+
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" name="adminPassword" required>
+                <div class="show-password">
+                    <input type="checkbox" id="showAdminPassword">
+                    <label for="showAdminPassword">Show Password</label>
+                </div>
+
+                <input type="submit" value="Login as Admin">
+            </form>
+            <div id="adminError" class="error"></div>
+        </div>
+
+        <div class="container" id="userLogin">
+            <h2>User Login</h2>
+            <form id="userLoginForm">
+                <label for="userEmail">Email</label>
+                <input type="email" id="userEmail" name="userEmail" required>
+
+                <label for="userPassword">Password</label>
+                <input type="password" id="userPassword" name="userPassword" required>
+                <div class="show-password">
+                    <input type="checkbox" id="showUserPassword">
+                    <label for="showUserPassword">Show Password</label>
+                </div>
+
+                <input type="submit" value="Login as User">
+            </form>
+            <div class="form-switch">
+                First time here? <a href="#" id="showRegisterForm">Register here</a>
+            </div>
+            <div id="userError" class="error"></div>
+        </div>
+
+        <div class="container" id="userRegister" style="display: none;">
+            <h2>User Registration</h2>
+            <form id="userRegisterForm">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+
+                <label for="createPassword">Create Password</label>
+                <input type="password" id="createPassword" name="createPassword" required>
+
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+                <div class="show-password">
+                    <input type="checkbox" id="showRegisterPassword">
+                    <label for="showRegisterPassword">Show Passwords</label>
+                </div>
+
+                <input type="submit" value="Register as User">
+            </form>
+            <div class="form-switch">
+                Already registered? <a href="#" id="showLoginForm">Login here</a>
+            </div>
+            <div id="registerError" class="error"></div>
+        </div>
+    </div>
+
+    <div class="menu" id="userMenu">
+        <h3>User Menu</h3>
+        <div class="menu-box">View Hackathons</div>
+        <div class="menu-box">My Applications</div>
+        <div class="menu-box">Settings</div>
+    </div>
+
+    <div class="menu" id="adminMenu">
+        <h3>Admin Menu</h3>
+        <div class="menu-box"><a href="Manage Hackathons.html">Manage Hackathons</a></div>
+        <div class="menu-box"><a href="View Users.html">View Users</a></div>
+    </div>
+
+    <script>
+    const adminCredentials = {
+        email: 'admin@admin.com',
+        password: 'admin123'
+    };
+
+    function togglePasswordVisibility(passwordFieldIds, checkboxId) {
+        const checkBox = document.getElementById(checkboxId);
+        checkBox.addEventListener('change', () => {
+            passwordFieldIds.forEach(fieldId => {
+                const passwordField = document.getElementById(fieldId);
+                passwordField.type = checkBox.checked ? 'text' : 'password';
+            });
+        });
+    }
+
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    adminLoginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('adminEmail').value;
+        const password = document.getElementById('adminPassword').value;
+
+        if (email === adminCredentials.email && password === adminCredentials.password) {
+            alert('Admin login successful!');
+            window.location.href = 'Manage Hackathons.html'; // Redirect to admin page
+        } else {
+            document.getElementById('adminError').innerText = 'Invalid admin credentials!';
+        }
+    });
+
+    document.getElementById('userLoginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('userEmail').value;
+        const password = document.getElementById('userPassword').value;
+
+        const storedUser = JSON.parse(localStorage.getItem(email));
+
+        if (storedUser && storedUser.password === password) {
+            alert('Login successful!');
+            window.location.href = 'hackathons.html'; // Redirect on successful login
+        } else {
+            document.getElementById('userError').innerText = 'Invalid email or password.';
+        }
+    });
+    document.getElementById('userRegisterForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('createPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            document.getElementById('registerError').innerText = 'Passwords do not match!';
+            return;
+        }
+
+        localStorage.setItem(email, JSON.stringify({ email, password }));
+
+        alert('Registration successful!');
+        window.location.href = 'hackathons.html'; 
+    });
+
+    document.getElementById('showRegisterForm').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('userLogin').style.display = 'none';
+        document.getElementById('userRegister').style.display = 'block';
+    });
+
+    document.getElementById('showLoginForm').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('userLogin').style.display = 'block';
+        document.getElementById('userRegister').style.display = 'none';
+    });
+
+    togglePasswordVisibility(['adminPassword'], 'showAdminPassword');
+    togglePasswordVisibility(['userPassword'], 'showUserPassword');
+    togglePasswordVisibility(['createPassword', 'confirmPassword'], 'showRegisterPassword');
+</script>
